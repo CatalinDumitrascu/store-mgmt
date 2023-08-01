@@ -1,22 +1,32 @@
 package com.ingexample.storemgmt.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 
 import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Product {
 
     @Id
     @GeneratedValue
     private Long id;
 
+    @NotNull
+    @Pattern(regexp = "^[\\s\\da-zA-Z-'&]{2,}$")
     private String name;
+
+    @NotNull
     private Double price;
-    private int availableQuantity;
+
+    private Integer availableQuantity;
+
     private LocalDate expirationDate;
 
     public Product(String name, Double price, int availableQuantity, LocalDate expirationDate) {
