@@ -22,4 +22,8 @@ public class ProductService {
     public Product getProductById(Long id) {
         return productRepository.findById(id).orElse(null);
     }
+
+    public void addProduct(Product product) {
+        productRepository.saveAndFlush(product);
+    }
 }
