@@ -73,4 +73,24 @@ public class ProductController {
 
         return response;
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateProduct(@PathVariable Long id,
+                                           @Valid @RequestBody Product product) {
+        ResponseEntity<?> response = null;
+
+        try {
+            Product updatedProduct = productService.updateProduct(id, product);
+            if(updatedProduct != null) {
+                response = new ResponseEntity<>(updatedProduct, HttpStatus.OK);
+            } else {
+                response = new ResponseEntity<>(new CustomErrorResponse("404", "No product found to update for id = " + id),
+                        HttpStatus.NOT_FOUND);
+            }
+        } catch (Exception e) {
+            response = new ResponseEntity<>(new CustomErrorResponse("400", e.getMessage()), HttpStatus.BAD_REQUEST);
+        }
+
+        return response;
+    }
 }

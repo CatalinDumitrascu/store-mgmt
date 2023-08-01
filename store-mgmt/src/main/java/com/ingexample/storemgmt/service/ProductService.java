@@ -26,4 +26,14 @@ public class ProductService {
     public void addProduct(Product product) {
         productRepository.saveAndFlush(product);
     }
+
+    public Product updateProduct(Long id, Product updatedProduct) {
+        return productRepository.findById(id).map(product -> {
+            product.setName(updatedProduct.getName());
+            product.setPrice(updatedProduct.getPrice());
+            product.setAvailableQuantity(updatedProduct.getAvailableQuantity());
+            product.setExpirationDate(updatedProduct.getExpirationDate());
+            return productRepository.saveAndFlush(product);
+        }).orElse(null);
+    }
 }
