@@ -1,6 +1,8 @@
 package com.ingexample.storemgmt.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -8,14 +10,16 @@ import java.util.Objects;
 @Entity
 public class Product {
 
+    @Id
+    @GeneratedValue
     private Long id;
+
     private String name;
     private Double price;
     private int availableQuantity;
     private LocalDate expirationDate;
 
-    public Product(Long id, String name, Double price, int availableQuantity, LocalDate expirationDate) {
-        this.id = id;
+    public Product(String name, Double price, int availableQuantity, LocalDate expirationDate) {
         this.name = name;
         this.price = price;
         this.availableQuantity = availableQuantity;
