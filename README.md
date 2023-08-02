@@ -27,6 +27,7 @@ Possible further developments:
 - Adding a @ControllerAdvice class for nicer responses in case of errors before the execution of the developed code, like MethodNotAllowed, or when validation fails for the request body.
 - Adding multiple custom exceptions for nicer responses in code, more than the simple 400 BAD Request which was used
 - Adding more functionality like searching for products with filters
+- Adding DELETE endpoint to offer full CRUD functionality
 - Adding tests for all the classes
 
 
